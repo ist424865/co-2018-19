@@ -22,12 +22,23 @@ void yyerror(char *s);
 %token tLE tGE tEQ tNE tASSIGN tINC tDEC 
 %token tIDENTIFIER tINT tSTRING tREAL
 %%
-file	:
-	;
+start:;
 %%
+int yyerror(char *s) { printf("%s\n",s); return 1; }
+char *dupstr(const char*s) { return strdup(s); }
 char **yynames =
 #if YYDEBUG > 0
 		 (char**)yyname;
 #else
 		 0;
 #endif
+int main(int argc, char *argv[]) {
+	extern YYSTYPE yylval;
+    int tk;
+	while ((tk = yylex())) 
+	    if (tk > YYERRCODE)
+			printf("%d:\t%s\n", tk, yyname[tk]);
+		else
+		    printf("%d:\t%c\n", tk, tk);
+    return 0;
+}
