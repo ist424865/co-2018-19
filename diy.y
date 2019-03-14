@@ -6,7 +6,7 @@
 #include "node.h"
 #include "tabid.h"
 extern int yylex();
-void yyerror(char *s);
+
 %}
 
 %union {
@@ -24,8 +24,7 @@ void yyerror(char *s);
 %%
 start:;
 %%
-void yyerror(char *s) { printf("%s\n",s); }
-char *dupstr(const char*s) { return strdup(s); }
+
 char **yynames =
 #if YYDEBUG > 0
 		 (char**)yyname;
@@ -33,8 +32,8 @@ char **yynames =
 		 0;
 #endif
 int main(int argc, char *argv[]) {
-    	extern YYSTYPE yylval;
-    	int tk; 
+    extern YYSTYPE yylval;
+    int tk; 
 	while ((tk = yylex())) 
 	    if (tk > YYERRCODE)
 			printf("%d:\t%s\n", tk, yyname[tk]);

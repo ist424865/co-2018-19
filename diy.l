@@ -7,7 +7,7 @@
 #include "y.tab.h"
 
 char *dupstr(const char *s);
-void yyerror(char *s);
+int yyerror(char *s);
 
 %}
 %x X_COMMENT X_STRING
