@@ -8,6 +8,7 @@
 
 static int is_delimited = 0;
 void yyerror(char *s);
+int octal(char *s);
 
 %}
 %x X_COMMENT X_STRING
@@ -90,5 +91,6 @@ int octal(char *s) {
       break;
     }
     a = b;
+  }
 }
 
