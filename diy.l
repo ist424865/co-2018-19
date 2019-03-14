@@ -1,4 +1,4 @@
-%option stack debug 
+%option stack 
 %{
 #include <stdlib.h>
 #include <string.h>
@@ -46,7 +46,7 @@ void yyerror(char *s);
 
 "==".*$                 ; /* Comentarios em linha */
 
-[a-zA-Z][a-zA-Z0-9_]*   yylval.s = dupstr(yytext); return tIDENTIFIER; 
+[a-zA-Z][a-zA-Z0-9_]*   yylval.s = strdup(yytext); return tIDENTIFIER; 
 
 0[0-7]+		            { errno = 0; yylval.i = strtol(yytext, 0, 8);  if (errno == ERANGE) yyerror("Octal overflow."); return tINT; }
 0[0-9]+                 yyerror("Invalid base 8 number.");

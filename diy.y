@@ -6,6 +6,7 @@
 #include "node.h"
 #include "tabid.h"
 #define YYDEBUG 1
+int yylex();
 void yyerror(char *s);
 %}
 
