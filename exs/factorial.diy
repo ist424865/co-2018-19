@@ -1,0 +1,8 @@
+public void printd(number n)
+public void println()
+public integer atoi(string s)
+
+public integer entry (integer argc, string *argv, string *envp) {
+  if argc > 1 then { printd(atoi(argv[1])!); println(); }
+  entry := 0;
+};
