@@ -6,7 +6,8 @@
 #include "node.h"
 #include "tabid.h"
 extern int yylex();
-
+int yyerror(const char* s);
+char *dupstr(const char *s);
 %}
 
 %union {
@@ -31,6 +32,24 @@ char **yynames =
 #else
 		 0;
 #endif
+int yyerror(const char *s)
+{
+  return 1;
+}
+
+char *dupstr(const char *s)
+{
+  char *d;
+  if (s == 0) return 0;
+  d = (char*)malloc(strlen(s)+1);
+  if (d == 0) return 0;
+  strcpy(d, s);
+  return d;
+}
+
+//int yyerror(const char *s);
+//char *dupstr(const char *s);
+
 int main(int argc, char *argv[]) {
     extern YYSTYPE yylval;
     int tk; 

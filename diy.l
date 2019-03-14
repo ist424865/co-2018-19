@@ -1,4 +1,4 @@
-%option stack debug
+%option stack debug 
 %{
 #include <stdlib.h>
 #include <string.h>
@@ -7,7 +7,7 @@
 #include "y.tab.h"
 
 char *dupstr(const char *s);
-int yyerror(char *s);
+int yyerror(const char *s);
 
 %}
 %x X_COMMENT X_STRING
