@@ -16,7 +16,11 @@ void yyerror(char *s);
 };
 
 %token <i> tINT
-%token tFOR
+%token <d> tREAL
+%token <s> tSTRING
+%token tVOID tINT_TYPE tSTRING_TYPE tPUBLIC tREAL_TYPE tCONST tIF tTHEN tELSE tWHILE tDO tFOR tIN tSTEP tUPTO tDOWNTO tDOWNTO tBREAK tCONTINUE 
+%token tLE tGE tEQ tNE tASSIGN tINC tDEC 
+%token tIDENTIFIER tINT tSTRING tREAL
 %%
 file	:
 	;

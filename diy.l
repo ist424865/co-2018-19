@@ -1,4 +1,4 @@
-%option stack
+%option stack debug
 %{
 #include <stdlib.h>
 #include <string.h>
@@ -8,7 +8,6 @@
 
 char *dupstr(const char *s);
 void yyerror(char *s);
-bool is_delimiter = false;
 
 %}
 %x X_COMMENT X_STRING
@@ -61,7 +60,7 @@ bool is_delimiter = false;
 \"                              yy_push_state(X_STRING);
 <X_STRING>\\\"                  strcat(yylval.s, yytext);
 <X_STRING>\"                    yy_pop_state(); return tSTRING;
-<X_STRING>\\[0-9a-fA-F]{1,2}    strcat(yylval.s, (char)strtol(yytext + 1, 0, 16));
+<X_STRING>\\[0-9a-fA-F]{1,2}    strcat(yylval.s, (char*)strtol(yytext + 1, 0, 16));
 <X_STRING>\0                    yyerror("NULL character at string literal.");
 <X_STRING>.|\n                  strcat(yylval.s, yytext);
 
