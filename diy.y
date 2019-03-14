@@ -11,10 +11,12 @@ void yyerror(char *s);
 
 %union {
 	int i;			/* integer value */
+	double d;		/* real value */
+	char *s;		/* symbol name or string literal */
 };
 
-%token <i> INT
-%token FOR
+%token <i> tINT
+%token tFOR
 %%
 file	:
 	;
