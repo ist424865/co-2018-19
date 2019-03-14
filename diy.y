@@ -5,9 +5,8 @@
 #include <string.h>
 #include "node.h"
 #include "tabid.h"
-extern int yylex();
-int yyerror(const char* s);
-char *dupstr(const char *s);
+#define YYDEBUG 1
+void yyerror(char *s);
 %}
 
 %union {
@@ -32,32 +31,15 @@ char **yynames =
 #else
 		 0;
 #endif
-int yyerror(const char *s)
-{
-  return 1;
-}
-
-char *dupstr(const char *s)
-{
-  char *d;
-  if (s == 0) return 0;
-  d = (char*)malloc(strlen(s)+1);
-  if (d == 0) return 0;
-  strcpy(d, s);
-  return d;
-}
-
-//int yyerror(const char *s);
-//char *dupstr(const char *s);
+void yyerror(char *s) { yynerrs++; }
 
 int main(int argc, char *argv[]) {
-    extern YYSTYPE yylval;
-    int tk; 
+	extern YYSTYPE yylval;
+	int tk;
 	while ((tk = yylex())) 
-	    if (tk > YYERRCODE)
+		if (tk > YYERRCODE)
 			printf("%d:\t%s\n", tk, yyname[tk]);
 		else
-		    printf("%d:\t%c\n", tk, tk);
-    	
-	return 0;
+			printf("%d:\t%c\n", tk, tk);
+	return yynerrs;
 }

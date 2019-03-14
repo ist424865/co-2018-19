@@ -6,8 +6,7 @@
 #include "node.h"
 #include "y.tab.h"
 
-char *dupstr(const char *s);
-int yyerror(const char *s);
+void yyerror(char *s);
 
 %}
 %x X_COMMENT X_STRING
